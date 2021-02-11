@@ -1,0 +1,31 @@
+/* Style Form */
+.PhonebookForm {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #000000;
+  background-color: #fff;
+}
+
+.labelTitle {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.input {
+  width: 200px;
+  margin-bottom: 15px;
+}
+
+.buttonSubmit {
+  width: 120px;
+  border: 1px solid #110ecf;
+  background-color: #36bad1;
+  border-radius: 3px;
+}
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

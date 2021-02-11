@@ -1,0 +1,27 @@
+.item {
+  display: flex;
+  align-items: center;
+
+  &:not(:last-child) {
+    margin-bottom: 5px;
+  }
+
+  &::before {
+    content: '';
+    width: 15px;
+    height: 3px;
+    margin-right: 10px;
+    background-color: rgb(12, 252, 4);
+  }
+}
+
+.content {
+  font-size: 18px;
+}
+
+.button {
+  margin-left: auto;
+  border: 1px solid #110ecf;
+  background-color: #fd4747;
+  border-radius: 3px;
+}
