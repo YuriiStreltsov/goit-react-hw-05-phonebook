@@ -45,10 +45,20 @@ ul {
 p {
   margin: 0;
 }
-
+/* Animation Title APP */
 .titleApp {
+  display: inline-block;
   margin-bottom: 20px;
+  color: #108397;
 }
-.titlleContact {
-  margin-bottom: 20px;
+
+.titleApp-appear {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.titleApp-appear-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 500ms, transform 500ms linear;
 }

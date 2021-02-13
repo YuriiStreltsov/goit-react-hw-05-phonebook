@@ -4,7 +4,7 @@ import './index.css';
 import FormAddContact from './components/FormAddContact/FormAddContact';
 import Filter from './components/Filter/Filter';
 import ContactList from './components/ContactsList/ContactsList';
-import ContactsListItem from './components/ContactsList/ContactsListItem';
+import { CSSTransition } from 'react-transition-group';
 
 class App extends Component {
   state = {
@@ -69,25 +69,26 @@ class App extends Component {
     const filteredContacts = this.filteredContacts(contacts, filter);
     return (
       <Container>
-        <h1 className="titleApp">Phonebook</h1>
+        <CSSTransition
+          in={true}
+          timeout={500}
+          classNames="titleApp"
+          appear={true}
+        >
+          <h1 className="titleApp">Phonebook</h1>
+        </CSSTransition>
         <FormAddContact onSubmit={this.addContact} />
         <h2 className="titlleContact">Contacts</h2>
         {contacts.length > 1 && <Filter onChange={this.handleChangeFilter} />}
         {filteredContacts.length === 0 && <p>Contact not found</p>}
+
         {filter.length > 0 ? (
-          <ContactList>
-            <ContactsListItem
-              item={filteredContacts}
-              onDeleteContact={this.deleteContact}
-            />
-          </ContactList>
+          <ContactList
+            item={filteredContacts}
+            onDeleteContact={this.deleteContact}
+          />
         ) : (
-          <ContactList>
-            <ContactsListItem
-              item={contacts}
-              onDeleteContact={this.deleteContact}
-            />
-          </ContactList>
+          <ContactList item={contacts} onDeleteContact={this.deleteContact} />
         )}
       </Container>
     );

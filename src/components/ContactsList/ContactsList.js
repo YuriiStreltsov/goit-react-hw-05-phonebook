@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types';
+import ContactsListItem from './ContactsListItem';
 import s from './ContactsList.module.scss';
 
-function ContactsList({ children }) {
-  return <ul className={s.list}>{children}</ul>;
+function ContactsList({ item, onDeleteContact }) {
+  return (
+    <ul className={s.list}>
+      <ContactsListItem item={item} onDeleteContact={onDeleteContact} />
+    </ul>
+  );
 }
-
-ContactsList.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 export default ContactsList;

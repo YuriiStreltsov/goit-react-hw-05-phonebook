@@ -16,7 +16,7 @@ class Filter extends Component {
       <div className={s.filter}>
         <p className={s.text}>Find contacts by name</p>
         <DebounceInput
-          minLength={2}
+          minLength={1}
           debounceTimeout={300}
           onChange={this.handleChange}
           className={s.input}
