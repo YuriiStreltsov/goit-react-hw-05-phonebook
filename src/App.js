@@ -5,6 +5,8 @@ import FormAddContact from './components/FormAddContact/FormAddContact';
 import Filter from './components/Filter/Filter';
 import ContactList from './components/ContactsList/ContactsList';
 import { CSSTransition } from 'react-transition-group';
+import { ToastContainer } from 'react-toastify';
+import sowNotify from './components/Notify/Notify';
 
 class App extends Component {
   state = {
@@ -36,12 +38,13 @@ class App extends Component {
     const unavailableName = contacts.find(contact => contact.name === name);
 
     if (unavailableName) {
-      alert(`${name} is already in contacts`);
+      sowNotify(name, 'is already in contacts');
+
       return;
     }
     this.setState(prevState => {
       return {
-        contacts: [...prevState.contacts, contact],
+        contacts: [contact, ...prevState.contacts],
       };
     });
   };
@@ -67,30 +70,34 @@ class App extends Component {
   render() {
     const { contacts, filter } = this.state;
     const filteredContacts = this.filteredContacts(contacts, filter);
-    return (
-      <Container>
-        <CSSTransition
-          in={true}
-          timeout={500}
-          classNames="titleApp"
-          appear={true}
-        >
-          <h1 className="titleApp">Phonebook</h1>
-        </CSSTransition>
-        <FormAddContact onSubmit={this.addContact} />
-        <h2 className="titlleContact">Contacts</h2>
-        {contacts.length > 1 && <Filter onChange={this.handleChangeFilter} />}
-        {filteredContacts.length === 0 && <p>Contact not found</p>}
 
-        {filter.length > 0 ? (
-          <ContactList
-            item={filteredContacts}
-            onDeleteContact={this.deleteContact}
-          />
-        ) : (
-          <ContactList item={contacts} onDeleteContact={this.deleteContact} />
-        )}
-      </Container>
+    return (
+      <>
+        <Container>
+          <CSSTransition
+            in={true}
+            timeout={500}
+            classNames="titleApp"
+            appear={true}
+          >
+            <h1 className="titleApp">Phonebook</h1>
+          </CSSTransition>
+          <FormAddContact onSubmit={this.addContact} />
+          <h2 className="titlleContact">Contacts</h2>
+          {contacts.length > 1 && <Filter onChange={this.handleChangeFilter} />}
+          {filteredContacts.length === 0 && <p>Contact not found</p>}
+
+          {filter.length > 0 ? (
+            <ContactList
+              item={filteredContacts}
+              onDeleteContact={this.deleteContact}
+            />
+          ) : (
+            <ContactList item={contacts} onDeleteContact={this.deleteContact} />
+          )}
+          <ToastContainer />
+        </Container>
+      </>
     );
   }
 }

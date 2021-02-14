@@ -2,6 +2,7 @@ import { Component } from 'react';
 import shortid from 'shortid';
 import PropTypes from 'prop-types';
 import s from './FormAddContact.module.scss';
+import showNotify from '../Notify/Notify';
 
 const INITIAL_STATE = {
   name: '',
@@ -23,7 +24,7 @@ class FormAddContact extends Component {
     e.preventDefault();
     const { name, number } = this.state;
     if (name.length === 0 || number.length === 0) {
-      return alert('Fields cannot be empty');
+      return showNotify('Fields cannot be empty');
     }
     const contact = {
       name: name,
